@@ -2,48 +2,61 @@
   <mat-grid-tile>
     <mat-card>
       <mat-card-header>
-        <mat-card-title>
-          Maintenance Request Form
-        </mat-card-title>
+        <mat-card-title>Maintenance Request Form</mat-card-title>
       </mat-card-header>
 
       <mat-card-content>
-        <form class="maint-form">
+        <form class="maint-form" [formGroup]="requestForm">
           <mat-form-field>
             <mat-label>Apartment Unit #</mat-label>
-            <input matInput type="text" />
+            <input formControlName="unitNumber" matInput type="text" />
+            <mat-error *ngIf="requestForm.get('unitNumber').invalid && requestForm.get('unitNumber').touched">
+              Unit number is required
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Requester Name</mat-label>
-            <input matInput type="text" />
+            <input formControlName="name" matInput type="text" />
+            <mat-error *ngIf="requestForm.get('name').invalid && requestForm.get('name').touched">
+              Name is required (min 2 characters)
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Requester Email</mat-label>
-            <input matInput type="email" />
+            <input formControlName="email" matInput type="email" />
+            <mat-error *ngIf="requestForm.get('email').invalid && requestForm.get('email').touched">
+              Valid email is required
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Service Type</mat-label>
-            <mat-select>
+            <mat-select formControlName="serviceType">
               <mat-option *ngFor="let serviceType of serviceTypes" [value]="serviceType">
-                {{serviceType}}
+                {{ serviceType }}
               </mat-option>
             </mat-select>
+            <mat-error *ngIf="requestForm.get('serviceType').invalid && requestForm.get('serviceType').touched">
+              Service type is required
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Summary</mat-label>
-            <input matInput type="text" />
+            <input formControlName="summary" matInput type="text" />
+            <mat-error *ngIf="requestForm.get('summary').invalid && requestForm.get('summary').touched">
+              Summary is required
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Details</mat-label>
-            <textarea matInput></textarea>
+            <textarea formControlName="details" matInput></textarea>
           </mat-form-field>
 
-          <button mat-raised-button color="accent">
+          <button mat-raised-button color="accent" (click)="onSubmitButton()">
             Submit
           </button>
         </form>

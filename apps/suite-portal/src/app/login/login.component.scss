@@ -1,0 +1,31 @@
+:host {
+    display: block;
+    height: 100vh;
+    margin: 0; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+  }
+  
+  mat-card {
+    width: 100%;
+    max-width: 400px; 
+    padding: 16px;
+  }
+  
+  mat-form-field {
+    width: 100%; 
+    margin-top: 16px; 
+  }
+  
+  button {
+    margin-top: 16px; 
+    width: 100%; 
+  }
+
+  .hint {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  

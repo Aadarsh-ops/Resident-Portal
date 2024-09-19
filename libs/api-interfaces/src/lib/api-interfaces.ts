@@ -12,7 +12,21 @@ export const ALL_SERVICE_TYPES = [
   ServiceType.Plumbing ,
 ];
 
+export enum RequestStatus {
+  Pending = 'pending',
+  InProgress = 'in-progress',
+  Complete = 'complete',
+}
+
+export const ALL_REQUEST_STATUS = [
+  RequestStatus.Pending,
+  RequestStatus.InProgress,
+  RequestStatus.Complete,
+];
+
 export interface MaintenanceRequest {
+
+  id?: string;
   // Name of the requester
   name: string;
   // Email of the requester
@@ -25,5 +39,8 @@ export interface MaintenanceRequest {
   summary: string;
   // Any extra details
   details?: string;
+  
+  status?: RequestStatus;
+  
 }
 
